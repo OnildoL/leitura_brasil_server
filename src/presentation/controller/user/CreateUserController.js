@@ -9,7 +9,7 @@ export async function CreateUserController(request, response) {
     const result = await CreateUserUseCase(userData)
 
     return response.status(201).json(result)
-  } catch {
+  } catch (error) {
     return response.status(400).send()
   }
 }

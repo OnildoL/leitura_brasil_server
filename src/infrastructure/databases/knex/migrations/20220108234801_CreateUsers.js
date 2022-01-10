@@ -4,7 +4,6 @@ export const up = knex => knex.schema.createTable("users", table => {
   table.text("password").notNullable()
   table.text("name").notNullable()
   table.text("role")
-  table.text("permission")
   table.boolean("activated")
   table.text("store")
 

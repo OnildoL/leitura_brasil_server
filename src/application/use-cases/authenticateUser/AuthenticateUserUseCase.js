@@ -55,7 +55,7 @@ export async function AuthenticateUserUseCase({ userNumber, userPassword }) {
     refresh_token,
    })
 
-  const data = { id: userData.id, user: userData.user, name: userData.name, role: userData.role, activated: userData.activated, store: userData.store }
+  const data = { id: userData.id, user: userData.user, name: userData.name, role: userData.role, permission: userData.permission, activated: userData.activated, store: userData.store }
 
   return { user: data, token, refresh_token }
 }

@@ -1,7 +1,7 @@
 import { database } from "../../../main/app.js"
 
-export async function FindAllUserListUseCase(role, store) {
-  if (role === "developer" || role === "manager") {
+export async function FindAllUserListUseCase(permission, store) {
+  if (permission) {
     return await database("users")
     .select(
       "id",

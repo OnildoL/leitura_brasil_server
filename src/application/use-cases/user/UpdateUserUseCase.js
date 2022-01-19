@@ -1,9 +1,9 @@
 import { database } from "../../../main/app.js"
 
 export async function UpdateUserUseCase(data) {
-  const { id, role, permission, activated } = data
+  const { id, user } = data
 
   return await database("users")
-    .update({ role, permission, activated })
+    .update(user)
     .where({ id })
 }

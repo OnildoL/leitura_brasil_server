@@ -15,9 +15,7 @@ export async function CreateGoalUseCase(data) {
     sector,
     month,
     year,
-    store,
-    created_at: new Date(),
-    updated_at: new Date()
+    store
   }
 
   return await database("goals").insert(dataGoal)

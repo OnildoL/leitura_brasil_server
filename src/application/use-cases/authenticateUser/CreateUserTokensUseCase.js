@@ -6,8 +6,7 @@ export async function CreateUserTokensUseCase(data) {
   const userToken = { 
     user_id,
     expires_date, 
-    refresh_token, 
-    created_at: new Date()
+    refresh_token
   }
 
   return await database("users_tokens").insert(userToken)

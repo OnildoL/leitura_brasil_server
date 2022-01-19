@@ -18,10 +18,9 @@ export async function CreateUserUseCase(data) {
     password: passwordHash,
     name,
     role,
+    permission: "default",
     activated: true,
-    store,
-    created_at: new Date(),
-    updated_at: new Date()
+    store
   }
 
   return await database("users").insert(dataUser)

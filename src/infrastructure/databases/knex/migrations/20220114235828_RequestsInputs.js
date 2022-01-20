@@ -5,6 +5,9 @@ export const up = knex => knex.schema.createTable("requests_inputs", table => {
   table.text("year").notNullable()
   table.text("request_value").notNullable()
   
+  table.integer("goals_id")
+    .references("goals.id")
+
   table.text("store").notNullable()
 
   table.timestamp("created_at").defaultTo(knex.fn.now())

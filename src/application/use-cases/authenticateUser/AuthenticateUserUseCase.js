@@ -19,7 +19,7 @@ function addDays(days) {
 
 export async function AuthenticateUserUseCase({ userNumber, userPassword }) {
   const userData = await FindByUserUseCase(userNumber)
-  
+
   const { 
     expires_in_token, 
     secret_token, 

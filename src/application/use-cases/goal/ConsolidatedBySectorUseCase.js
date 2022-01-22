@@ -1,9 +1,10 @@
 import { database } from "../../../main/app.js"
 
-async function getGoals(year) {
+async function getGoals(year, store) {
   const data = await database("goals")
     .where({
-      year: year
+      year,
+      store
     })
   
   return data
@@ -22,7 +23,7 @@ async function getRequests(id) {
   return data
 }
 async function getNotes(id) {
-  const data = await database("notes")
+  const [data] = await database("notes")
     .where({ requests_inputs_id: id })
     .join("requests_inputs", "requests_inputs.id", "=", "notes.requests_inputs_id")
     .select(
@@ -38,10 +39,10 @@ async function getNotes(id) {
 
   return data
 }
-export async function ConsolidatedBySectorUseCase(year) {
+export async function ConsolidatedBySectorUseCase(year, store) {
   const consolidatedBySectors = []
 
-  const goals = await getGoals(year)
+  const goals = await getGoals(year, store)
 
   for await (const goal of goals) {
     const requests = await getRequests(goal.id)

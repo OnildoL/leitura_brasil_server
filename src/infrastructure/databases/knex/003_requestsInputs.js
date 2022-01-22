@@ -3,12 +3,12 @@ export const seed = knex => {
     .then(function () {
       return knex("requests_inputs").insert([
         {
-          provider: "SERTIC",
-          month: "MAR",
+          provider: "Teste",
+          month: "FEV",
           year: "2022",
           request_value: "5000",
-          store: "31"
-        }
+          store: "69"
+        },
       ])
     })
 }

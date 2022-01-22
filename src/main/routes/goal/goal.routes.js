@@ -7,7 +7,7 @@ import { ensureAuthenticated } from "../../../presentation/middleware/ensureAuth
 const goalsRoutes = Router()
 
 goalsRoutes.use(ensureAuthenticated)
-goalsRoutes.get("/consolidated/:year", ConsolidatedBySectorController)
+goalsRoutes.get("/consolidated/:year/:store", ConsolidatedBySectorController)
 
 goalsRoutes.get("/", GoalListController)
 goalsRoutes.post("/", CreateGoalController)

@@ -7,7 +7,7 @@ export const seed = knex => {
           cnpj: "60.840.691/0001-63",
           value: "13962.13",
           nf: "307336",
-          issue: "2022-01-13",
+          issue: new Date("2022-01-13"),
           provider: "Comercio e Importacao Sertic Ltda.",
           store: "31"
         }

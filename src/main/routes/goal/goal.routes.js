@@ -3,6 +3,7 @@ import { ConsolidatedBySectorController } from "../../../presentation/controller
 import { CreateGoalController } from "../../../presentation/controller/goal/CreateGoalController.js"
 import { FindAllGoalsAndNotesController } from "../../../presentation/controller/goal/FindAllGoalsAndNotesController.js"
 import { GoalListController } from "../../../presentation/controller/goal/GoalListController.js"
+import { UpdateGoalController } from "../../../presentation/controller/goal/UpdateGoalController.js"
 import { YearConsolidationController } from "../../../presentation/controller/goal/YearConsolidationController.js"
 import { ensureAuthenticated } from "../../../presentation/middleware/ensureAuthenticated/ensureAuthenticated.js"
 
@@ -16,5 +17,6 @@ goalsRoutes.get("/consolidated/:year/:store/:sector", FindAllGoalsAndNotesContro
 
 goalsRoutes.get("/", GoalListController)
 goalsRoutes.post("/", CreateGoalController)
+goalsRoutes.put("/", UpdateGoalController)
 
 export { goalsRoutes }

@@ -10,13 +10,7 @@ export async function CreateGoalUseCase(data) {
     throw new AppError("Já existe meta cadastrada!", 405)
   }
 
-  const dataGoal = {
-    goal,
-    sector,
-    month,
-    year,
-    store
-  }
+  const dataGoal = { goal, sector, month, year, store }
 
   return await database("goals").insert(dataGoal)
 }

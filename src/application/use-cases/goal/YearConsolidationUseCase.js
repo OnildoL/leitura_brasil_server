@@ -151,6 +151,6 @@ export async function YearConsolidationUseCase(year, store) {
   }
 
   const totals = await totalConsolidationAmountsFortheYear(year, store)
-
+  
   return { consolidated, totals }
 }

@@ -23,7 +23,7 @@ async function getRequests(id) {
   return data
 }
 async function getNotes(id) {
-  const [data] = await database("notes")
+  const data = await database("notes")
     .where({ requests_inputs_id: id })
     .join("requests_inputs", "requests_inputs.id", "=", "notes.requests_inputs_id")
     .select(
@@ -52,7 +52,11 @@ export async function ConsolidatedBySectorUseCase(year, store) {
     for await (const request of requests) {
       const result = await getNotes(request.request_id)
 
-      if (result) notes.push(result)
+      if (result) {
+        for (const note of result) {
+          notes.push(note)
+        }
+      }
     }
 
     const result = {

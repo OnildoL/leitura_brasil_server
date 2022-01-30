@@ -3,7 +3,7 @@ const passwordOnildo = await hash("3145", 8)
 const passwordAriel = await hash("3107", 8)
 
 export const seed = knex => {
-  return knex("users").del()
+  return knex("users")
     .then(function () {
       return knex("users").insert([
         {

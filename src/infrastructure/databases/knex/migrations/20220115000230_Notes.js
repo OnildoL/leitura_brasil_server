@@ -7,9 +7,8 @@ export const up = knex => knex.schema.createTable("notes", table => {
   table.text("issue").notNullable()
   table.text("provider").notNullable()
 
-  table.text("yes")
-  table.text("no")
-  table.text("pending")
+  table.text("receive")
+
   table.text("hangtag")
   table.text("arrival")
   table.text("input")
@@ -21,14 +20,16 @@ export const up = knex => knex.schema.createTable("notes", table => {
   table.text("discount")
   table.text("percentage")
   table.boolean("catch_products")
-
+  
   table.integer("requests_inputs_id")
-    .references("requests_inputs.id")
-
+  .references("requests_inputs.id")
+  
   table.text("store").notNullable()
-
+  
   table.timestamp("created_at").defaultTo(knex.fn.now())
   table.timestamp("updated_at").defaultTo(knex.fn.now())
+  
+  table.text("year")
 })
 
 export const down = knex => knex.schema.dropTable("notes")

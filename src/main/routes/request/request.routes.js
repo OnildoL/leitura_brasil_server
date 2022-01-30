@@ -4,6 +4,7 @@ import { CreateRequestController } from "../../../presentation/controller/reques
 import { FindAllGoalsForRequestMonthController } from "../../../presentation/controller/request/FindAllGoalsForRequestMonthController.js"
 import { FindByIdController } from "../../../presentation/controller/request/FindByIdController.js"
 import { UpdateRequestController } from "../../../presentation/controller/request/UpdateRequestController.js"
+import { LinkNoteController } from "../../../presentation/controller/note/LinkNoteController.js"
 import { ensureAuthenticated } from "../../../presentation/middleware/ensureAuthenticated/ensureAuthenticated.js"
 
 const requestRoutes = Router()
@@ -15,5 +16,6 @@ requestRoutes.get("/:id", FindByIdController)
 
 requestRoutes.post("/", CreateRequestController)
 requestRoutes.put("/", UpdateRequestController)
+requestRoutes.put("/link", LinkNoteController)
 
 export { requestRoutes }

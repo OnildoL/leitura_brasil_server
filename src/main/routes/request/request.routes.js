@@ -6,6 +6,7 @@ import { FindByIdController } from "../../../presentation/controller/request/Fin
 import { UpdateRequestController } from "../../../presentation/controller/request/UpdateRequestController.js"
 import { LinkNoteController } from "../../../presentation/controller/note/LinkNoteController.js"
 import { ensureAuthenticated } from "../../../presentation/middleware/ensureAuthenticated/ensureAuthenticated.js"
+import { RemoveNoteLinkingController } from "../../../presentation/controller/note/RemoveNoteLinkingController.js"
 
 const requestRoutes = Router()
 
@@ -17,5 +18,6 @@ requestRoutes.get("/:id", FindByIdController)
 requestRoutes.post("/", CreateRequestController)
 requestRoutes.put("/", UpdateRequestController)
 requestRoutes.put("/link", LinkNoteController)
+requestRoutes.put("/remove/note", RemoveNoteLinkingController)
 
 export { requestRoutes }

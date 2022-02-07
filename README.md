@@ -163,4 +163,20 @@ function consultCategory() {
   cnpj: "32.291.140/0001-52",
   requests_inputs_id: 4,
 }
+
+const dates = {
+  date_one: { year: "2022", month: "02", day: "01" },
+  date_two: { year: "2022", month: "02", day: "02" }
+}
+
+async function filterByDate(field, { date_one, date_two }) {
+  const data = await database("notes")
+    .where(database.raw(`${field} like '${date_one.year}${ !date_one.month ? "" : `-${date_one.month}` }${ !date_one.day ? "" : `-${date_one.day}` }%'`))
+    .orWhere(database.raw(`${field} like '${date_two.year}${ !date_two.month ? "" : `-${date_two.month}` }${ !date_two.day ? "" : `-${date_two.day}` }%'`))
+    .orderBy(field, "DESC")
+
+  return JSON.stringify(data, null, 2)
+}
+
+console.log(await filterByDate("issue", dates))
 ```

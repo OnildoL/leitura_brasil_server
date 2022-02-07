@@ -61,7 +61,7 @@ export async function CaptureNotesUseCase(file_name, store) {
     if (worksheet[`B${i}`]) {
       if (worksheet[`C${i}`].v !== "Número") {
         const access_key = worksheet[`B${i}`].v.toString()
-        const cnpj = worksheet[`E${i}`].v.toString()
+        const cnpj = !worksheet[`E${i}`] ? "ISENTO" : worksheet[`E${i}`].v.toString()
         const value = worksheet[`I${i}`].v.toString().replace(",", ".")
         const nf = worksheet[`C${i}`].v.toString()
         const issue = setsDate(worksheet[`G${i}`].w)

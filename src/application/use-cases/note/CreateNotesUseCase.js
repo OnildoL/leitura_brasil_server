@@ -1,4 +1,5 @@
 import { database } from "../../../main/app.js"
+import { FindByAccessKeyUseCase } from "./FindByAccessKeyUseCase.js"
 
 export async function CreateNotesUseCase(notes) {
   for (const note of notes) {

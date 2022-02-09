@@ -1,7 +1,8 @@
 import { database } from "../../../main/app.js"
 
-export async function FindAllGoalUseCase() {
+export async function FindAllGoalUseCase(store) {
   return await database("goals")
+    .where({ store })
 }
 
 export async function FindAllGoalsPerStoreUseCase(data) {

@@ -64,38 +64,19 @@ async function consolidate(year, store) {
 
   return JSON.stringify(consolidated)
 }
-async function totalConsolidationAmountsFortheYear(year, store) {
-  const goals = await database("goals")
-    .where({ year, store })
+async function totalConsolidationAmountsFortheYear(data) {
+  const { goal, request, note } = data.reduce((accumulator, { goal, request, note }) => {
+    accumulator.goal = accumulator.goal + goal || goal
+    accumulator.request = accumulator.request + request || request
+    accumulator.note = accumulator.note + note || note
 
-  const requests = await database("requests_inputs")
-    .where({ year, store })
-
-  const inputs = await database("notes")
-    .where({ year, store })
-  
-  const { goal } = goals.reduce((accumulator, { goal }) => {
-    accumulator.goal = accumulator.goal + Number(goal) || Number(goal)
-      
-    return accumulator
-  }, {})
-
-  const { request } = requests.reduce((accumulator, { request_value }) => {
-    accumulator.request = accumulator.request + Number(request_value) || Number(request_value)
-      
-    return accumulator
-  }, {})
-
-  const { input } = inputs.reduce((accumulator, { value }) => {
-    accumulator.input = accumulator.input + Number(value) || Number(value)
-      
     return accumulator
   }, {})
 
   const consolidated_year = {
     goal: goal || 0,
     request: request || 0,
-    input: input || 0
+    input: note || 0
   }
 
   return consolidated_year
@@ -150,7 +131,7 @@ export async function YearConsolidationUseCase(year, store) {
     consolidated.push({ id: randomUUID(), month, ...goal, request, note })
   }
 
-  const totals = await totalConsolidationAmountsFortheYear(year, store)
+  const totals = await totalConsolidationAmountsFortheYear(consolidated)
   
   return { consolidated, totals }
 }

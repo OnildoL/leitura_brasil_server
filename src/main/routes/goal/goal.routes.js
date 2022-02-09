@@ -1,4 +1,5 @@
 import { Router } from "express"
+import { ConsolidateBySectorController } from "../../../presentation/controller/goal/ConsolidateBySectorController.js"
 import { ConsolidatedBySectorController } from "../../../presentation/controller/goal/ConsolidatedBySectorController.js"
 import { CreateGoalController } from "../../../presentation/controller/goal/CreateGoalController.js"
 import { FindAllGoalsAndNotesController } from "../../../presentation/controller/goal/FindAllGoalsAndNotesController.js"
@@ -12,10 +13,11 @@ const goalsRoutes = Router()
 goalsRoutes.use(ensureAuthenticated)
 
 goalsRoutes.get("/consolidation/:year/:store", YearConsolidationController)
+goalsRoutes.get("/consolidate/:year/:store/:sector", ConsolidateBySectorController)
 goalsRoutes.get("/consolidated/:year/:store", ConsolidatedBySectorController)
 goalsRoutes.get("/consolidated/:year/:store/:sector", FindAllGoalsAndNotesController)
 
-goalsRoutes.get("/", GoalListController)
+goalsRoutes.get("/:store", GoalListController)
 goalsRoutes.post("/", CreateGoalController)
 goalsRoutes.put("/", UpdateGoalController)
 

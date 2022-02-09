@@ -5,7 +5,7 @@
   "license": "MIT",
   "type": "module",
   "scripts": {
-    "dev": "nodemon src/main/server.js",
+    "dev": "nodemon --experimental-json-modules src/main/server.js",
     "build": "babel src -d build/",
     "test": "nodemon --inspect src/main/server.js",
     "typeorm": "./node_modules/typeorm/cli",

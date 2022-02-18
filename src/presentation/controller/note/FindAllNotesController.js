@@ -3,10 +3,11 @@ import { FindByIdUserUseCase } from "../../../application/use-cases/user/FindByI
 
 export async function FindAllNotesController(request, response) {
   const { user_id } = request
-
   const { store } = await FindByIdUserUseCase(user_id)
 
-  const notes = await FindAllNotesUseCase(store)
+  const { page = 1 } = request.query
 
-  return response.status(200).json(notes)
+  const { notes, count } = await FindAllNotesUseCase(page, store)
+
+  return response.status(200).json({ notes, ...count })
 }

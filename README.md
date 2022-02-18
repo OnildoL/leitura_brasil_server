@@ -129,41 +129,6 @@
 ---
 
 ```JS
-function consultCategory() {
-  let selectCategory = document.getElementById('check-category')
-  let checkCategory = selectCategory.options[selectCategory.selectedIndex].value
-  let filterNf = document.getElementById('search')
-  let table = document.getElementById('table-notes')
-  let filterContent = filterNf.value.toUpperCase().trim()
-
-  const cell = parseInt(checkCategory)
-
-  for (let i = 1; i < table.rows.length; i++) {
-    let cellValue = table.rows[i].cells[cell].innerText
-
-    let correspond = cellValue.indexOf(filterContent) >= 0
-
-    table.rows[i].style.display = correspond ? '' : 'none'
-  }
-}
-{
-  id: "d76be7f5-859e-4094-ae25-970f36bceb15",
-  request_id: 4,
-  year: "2022",
-  request_month: "FEV",
-  request_provider: "NOVITATE",
-  request_value: "12000",
-  goals_id: 5,
-  note_id: 4,
-  note_value: "11530.42",
-  nf: "180485",
-  issue: "2022-01-10T21:00:00.000-03:00",
-  note_provider: "NOVITATE IND E COM DE ART DE PAPE E MAT DE ESCR",
-  access_key: "35220132291140000152550010001804851217165240",
-  cnpj: "32.291.140/0001-52",
-  requests_inputs_id: 4,
-}
-
 const dates = {
   date_one: { year: "2022", month: "02", day: "01" },
   date_two: { year: "2022", month: "02", day: "02" }

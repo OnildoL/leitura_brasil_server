@@ -3,6 +3,7 @@ import { database } from "../../../main/app.js"
 export async function FindAllUserListUseCase(permission, store) {
   if (permission) {
     return await database("users")
+    .orderBy("name", "ASC")
     .select(
       "id",
       "user",
@@ -15,6 +16,7 @@ export async function FindAllUserListUseCase(permission, store) {
   }
 
   return await database("users")
+    .orderBy("name", "ASC")
     .select(
       "id",
       "user",

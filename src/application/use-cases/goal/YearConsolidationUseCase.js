@@ -74,11 +74,11 @@ async function totalConsolidationAmountsFortheYear(data) {
   }, {})
 
   const consolidated_year = {
-    goal: goal || 0,
-    request: request || 0,
-    input: note || 0
+    goal: goal ?? 0,
+    request: request ?? 0,
+    input: note ?? 0
   }
-
+  
   return consolidated_year
 }
 export async function YearConsolidationUseCase(year, store) {
@@ -111,8 +111,8 @@ export async function YearConsolidationUseCase(year, store) {
   
       requestAndNote.push({
         month: goalRequestNoteMonth.month,
-        request: request || 0,
-        note: note || 0
+        request: request ?? 0,
+        note: note ?? 0
       })
     }
     
@@ -127,8 +127,8 @@ export async function YearConsolidationUseCase(year, store) {
         
       return accumulator
     }, {})
-
-    consolidated.push({ id: randomUUID(), month, ...goal, request, note })
+    
+    consolidated.push({ id: randomUUID(), month, goal: goal.goal ?? 0, request: request ?? 0, note: note ?? 0 })
   }
 
   const totals = await totalConsolidationAmountsFortheYear(consolidated)

@@ -2,7 +2,7 @@ import { database } from "../../../main/app.js";
 import { AppError } from "../../../presentation/middleware/middlewareAppError/AppError.js";
 import { FindByAccessKeyUseCase } from "./FindByAccessKeyUseCase.js";
 
-export async function UpdateNoteUseCase(access_key, update) {
+export async function UpdateNoteUseCase(access_key, update, remove = "") {
   if (isNaN(access_key)) {
     throw new AppError("Chave de acesso inválida!", 405)
   }
@@ -17,8 +17,10 @@ export async function UpdateNoteUseCase(access_key, update) {
     throw new AppError("Chave de acesso não existe!", 405)
   }
 
-  if (accessKeyAlreadyExists.requests_inputs_id) {
-    throw new AppError("Nota vinculada a outro pedido!", 405)
+  if (remove !== "removeLinking") {
+    if (accessKeyAlreadyExists.requests_inputs_id) {
+      throw new AppError("Nota vinculada a outro pedido!", 405)
+    }
   }
 
   return await database("notes")

@@ -5,7 +5,9 @@ export async function RemoveNoteLinkingController(request, response) {
 
   const update = { requests_inputs_id: null }
 
-  await UpdateNoteUseCase(access_key, update)
+  const remove = "removeLinking"
+
+  await UpdateNoteUseCase(access_key, update, remove)
 
   return response.status(200).send()
 }

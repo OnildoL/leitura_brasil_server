@@ -17,6 +17,6 @@ export async function UpdateNewPasswordUseCase(data) {
   const passwordHash = await hash(password, 8)
 
   return await database("users")
-    .update({ password: passwordHash })
+    .update({ password: passwordHash, updated_at: new Date() })
     .where({ id: user_data.id })
 }

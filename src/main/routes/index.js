@@ -6,6 +6,7 @@ import { goalsRoutes } from "./goal/goal.routes.js"
 import { requestRoutes } from "./request/request.routes.js"
 import { noteRoutes } from "./note/note.routes.js"
 import { providerRoutes } from "./provider/provider.routes.js"
+import { hitRoutes } from "./hit/hit.routes.js"
 
 const router = Router()
 
@@ -14,6 +15,7 @@ router.use("/goals", goalsRoutes)
 router.use("/requests", requestRoutes)
 router.use("/notes", noteRoutes)
 router.use("/providers", providerRoutes)
+router.use("/hits", hitRoutes)
 router.use(authenticateRoutes)
 
 export { router }

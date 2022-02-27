@@ -21,6 +21,9 @@ export const up = knex => knex.schema.createTable("notes", table => {
   table.text("percentage")
   table.boolean("catch_products")
   
+  table.integer("hits_id")
+    .references("hits.id")
+
   table.integer("requests_inputs_id")
   .references("requests_inputs.id")
   

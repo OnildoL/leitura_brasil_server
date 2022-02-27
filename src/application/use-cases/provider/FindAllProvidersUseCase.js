@@ -35,7 +35,7 @@ export async function FindAllProvidersUseCase(store) {
 
     data.push({ 
       ...provider,
-      right: !hit.current_hit ? "Acertar" : "Acertado" 
+      right: !hit?.current_hit ? "Acertar" : "Acertado" 
     })
   }
 

@@ -7,9 +7,9 @@ export const up = knex => knex.schema.createTable("hits", table => {
   table.text("current_hit")
   table.text("value_nerus")
   table.text("sales_report")
+  table.text("comments")
 
-  table.integer("notes_id")
-    .references("notes.id")
+  table.text("store").notNullable()
 
   table.integer("providers_info_id").notNullable()
     .references("providers_info.id")

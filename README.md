@@ -145,3 +145,23 @@ async function filterByDate(field, { date_one, date_two }) {
 
 console.log(await filterByDate("issue", dates))
 ```
+
+# AUTORES
+
+**Requisitos funcionais**
+
+- [] Listagem dos autores
+  - [] CPF; NOME; DATA;
+- [] Listagem dos títulos relacionados a cada autor
+  **CADASTRO DO AUTOR SEPARADO DOS TITULOS**
+  - [] CODIGO; NOME; QNT ESTOQUE; QNT CONSIG; QNT ACERTADA; QNT DEVOLVIDA;
+- [] Listagem das notas relacionadas a cada título
+  - [] NF; NATUREZA; QNT; DATA;
+
+**Requisitos não funcionais**
+
+- []
+
+**Regra de negócio**
+
+- []

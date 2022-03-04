@@ -1,10 +1,10 @@
 import { database } from "../../../main/app.js"
 
-export async function FindAllProvidersUseCase(store) {
+export async function FindAllProvidersUseCase(store, activated) {
   const data = []
 
   const providers = await database("providers_info")
-    .where({ store, activated: "yes" })
+    .where({ store, activated })
     .join("providers", "providers.id", "=", "providers_info.providers_id")
     .orderBy("provider", "ASC")
     .select(
@@ -40,4 +40,9 @@ export async function FindAllProvidersUseCase(store) {
   }
 
   return data
+}
+
+export async function FindAllProvidersIdUseCase() {
+  return await database("providers")
+    .orderBy("provider", "asc")
 }

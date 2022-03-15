@@ -9,11 +9,13 @@ import { ensureAuthenticated } from "../../../presentation/middleware/ensureAuth
 import { FindByNotePerRequestIdController } from "../../../presentation/controller/note/FindByNotePerRequestIdController.js"
 import { CreateNotesController } from "../../../presentation/controller/note/CreateNotesController.js"
 import { FindAllNotesController } from "../../../presentation/controller/note/FindAllNotesController.js"
+import { FindByNfNotesController } from "../../../presentation/controller/note/FindByNfNotesController.js"
 
 const noteRoutes = Router()
 
 noteRoutes.use(ensureAuthenticated)
 noteRoutes.get("/:id", FindByNotePerRequestIdController)
+noteRoutes.get("/consult/nfs", FindByNfNotesController)
 
 noteRoutes.get("/", FindAllNotesController)
 noteRoutes.post("/", upload.single("file"), CreateNotesController)

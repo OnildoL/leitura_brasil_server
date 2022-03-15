@@ -7,6 +7,7 @@ import { UpdateRequestController } from "../../../presentation/controller/reques
 import { LinkNoteController } from "../../../presentation/controller/note/LinkNoteController.js"
 import { ensureAuthenticated } from "../../../presentation/middleware/ensureAuthenticated/ensureAuthenticated.js"
 import { RemoveNoteLinkingController } from "../../../presentation/controller/note/RemoveNoteLinkingController.js"
+import { DeleteRequestController } from "../../../presentation/controller/request/DeleteRequestController.js"
 
 const requestRoutes = Router()
 
@@ -19,5 +20,6 @@ requestRoutes.post("/", CreateRequestController)
 requestRoutes.put("/", UpdateRequestController)
 requestRoutes.put("/link", LinkNoteController)
 requestRoutes.put("/remove/note", RemoveNoteLinkingController)
+requestRoutes.put("/remove/request", DeleteRequestController)
 
 export { requestRoutes }

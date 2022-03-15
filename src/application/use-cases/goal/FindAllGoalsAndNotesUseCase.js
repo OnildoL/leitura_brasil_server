@@ -35,6 +35,7 @@ export async function FindAllGoalsAndNotesUseCase(year, store, sector) {
           "notes.value as note_value",
           "notes.nf",
           "notes.issue",
+          "notes.input",
           "notes.provider as note_provider",
           "notes.requests_inputs_id",
         )

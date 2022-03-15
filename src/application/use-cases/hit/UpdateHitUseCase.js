@@ -7,6 +7,7 @@ export async function UpdateHitUseCase(data) {
     current_hit, 
     sales_report, 
     value_nerus, 
+    reason, 
     comments, 
     situation 
   } = data
@@ -16,7 +17,8 @@ export async function UpdateHitUseCase(data) {
     current_hit, 
     sales_report, 
     value_nerus, 
-    comments, 
+    reason,
+    comments,
     situation,
     updated_at: new Date()
   }

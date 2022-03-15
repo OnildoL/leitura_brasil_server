@@ -26,6 +26,10 @@ export async function FindAllProvidersUseCase(store, activated) {
       "7": "JUL", "8": "AGO", "9": "SET", "10": "OUT", "11": "NOV", "12": "DEZ",
     })[monthNumber]
     
+    const [current_hit] = await database("hits")
+      .max('current_hit')
+      .where({ providers_info_id: provider.id })
+
     const [ hit ] = await database("hits")
     .where({ 
       year: new Date().getFullYear(), 
@@ -35,6 +39,7 @@ export async function FindAllProvidersUseCase(store, activated) {
 
     data.push({ 
       ...provider,
+      current_hit: current_hit.max,
       right: !hit?.current_hit ? "Acertar" : "Acertado" 
     })
   }

@@ -43,6 +43,7 @@ async function getNotes(id) {
       "notes.value as note_value",
       "notes.nf",
       "notes.issue",
+      "notes.input",
       "notes.provider as note_provider",
       "notes.requests_inputs_id",
     )
@@ -61,7 +62,8 @@ export async function filtersConsolidatedBySector(data, sector) {
       return accumulator
     }, {})
 
-    const { note } = goal_month.notes.reduce((accumulator, { note_value }) => {
+    const { note, note_input } = goal_month.notes.reduce((accumulator, { note_value, input }) => {
+      accumulator.note_input = input
       accumulator.note = accumulator.note + Number(note_value) || Number(note_value)
       return accumulator
     }, {})
@@ -72,7 +74,8 @@ export async function filtersConsolidatedBySector(data, sector) {
       sector: sector,
       month: goal_month.month,
       request: request ?? 0,
-      input: note ?? 0
+      input: note ?? 0,
+      note_input
     })
   }
 

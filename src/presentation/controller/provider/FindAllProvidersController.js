@@ -2,13 +2,16 @@ import { FindAllProvidersIdUseCase, FindAllProvidersUseCase } from "../../../app
 import { FindByIdUserUseCase } from "../../../application/use-cases/user/FindByIdUserUseCase.js"
 
 export async function FindAllProvidersController(request, response) {
+  const { selectStore } = request.query
   const { user_id } = request
 
   const { activated } = request.params
   
   const { store } = await FindByIdUserUseCase(Number(user_id))
 
-  const providers = await FindAllProvidersUseCase(store, activated)
+  const chosen_store = !selectStore ? store : selectStore
+
+  const providers = await FindAllProvidersUseCase(chosen_store, activated)
 
   return response.status(200).json(providers)
 }

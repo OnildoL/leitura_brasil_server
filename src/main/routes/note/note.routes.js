@@ -10,6 +10,7 @@ import { FindByNotePerRequestIdController } from "../../../presentation/controll
 import { CreateNotesController } from "../../../presentation/controller/note/CreateNotesController.js"
 import { FindAllNotesController } from "../../../presentation/controller/note/FindAllNotesController.js"
 import { FindByNfNotesController } from "../../../presentation/controller/note/FindByNfNotesController.js"
+import { UpdateOneNoteController } from "../../../presentation/controller/note/UpdateOneNoteController.js"
 
 const noteRoutes = Router()
 
@@ -19,5 +20,6 @@ noteRoutes.get("/consult/nfs", FindByNfNotesController)
 
 noteRoutes.get("/", FindAllNotesController)
 noteRoutes.post("/", upload.single("file"), CreateNotesController)
+noteRoutes.put("/", UpdateOneNoteController)
 
 export { noteRoutes }

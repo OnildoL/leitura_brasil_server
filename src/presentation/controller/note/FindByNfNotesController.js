@@ -13,7 +13,8 @@ export async function FindByNfNotesController(request, response) {
   const nfs = []
 
   for await (const note of notes) {
-    const result = await FindByNfNotesUseCase(note, store)
+    const data_where = { nf: note, store }
+    const result = await FindByNfNotesUseCase(data_where)
 
     for (const nf of result) {
       nfs.push(nf)

@@ -5,7 +5,7 @@ import { unLink } from "../../../main/utils/unlink.js"
 async function FindProvider(number_nerus) {
   const [provider] = await database("providers")
     .where({ number_nerus })
-  
+
   return provider
 }
 
@@ -14,12 +14,12 @@ async function CreateProvider(data) {
 
   await database("providers")
     .insert({ provider, number_nerus })
-  
-  return 
+
+  return
 }
 
 const getMonthNumber = monthNumber => ({
-  "JAN": 1, "FEV": 2, "MAR": 3, "ABR": 4, "MAI": 5, "JUN": 6, 
+  "JAN": 1, "FEV": 2, "MAR": 3, "ABR": 4, "MAI": 5, "JUN": 6,
   "JUL": 7, "AGO": 8, "SET": 9, "OUT": 10, "NOV": 11, "DEZ": 12,
 })[monthNumber]
 
@@ -46,6 +46,7 @@ export async function RegisterHistoricalUseCase(data) {
         const sales_report = !work_sheet[`F${i}`] ? "" : work_sheet[`F${i}`].v.toString()
         const nf = !work_sheet[`G${i}`] ? "" : work_sheet[`G${i}`].v.toString()
         const reason = !work_sheet[`H${i}`] ? "" : work_sheet[`H${i}`].v.toString()
+        const value_note = !work_sheet[`I${i}`] ? "" : work_sheet[`I${i}`].v.toString()
 
         hits.push({
           store,
@@ -59,6 +60,7 @@ export async function RegisterHistoricalUseCase(data) {
           sales_report,
           nf,
           reason,
+          value_note,
         })
       }
     }
@@ -68,8 +70,8 @@ export async function RegisterHistoricalUseCase(data) {
     const provider = await FindProvider(hit.number_nerus)
 
     if (!provider) {
-      const  data = { 
-        provider: hit.provider, 
+      const data = {
+        provider: hit.provider,
         number_nerus: hit.number_nerus
       }
 
@@ -86,7 +88,7 @@ export async function RegisterHistoricalUseCase(data) {
 
     if (!check_providers_info) {
       await database("providers_info")
-        .insert({ 
+        .insert({
           activated: "yes",
           discount: "",
           map: "",
@@ -118,7 +120,7 @@ export async function RegisterHistoricalUseCase(data) {
       })
 
     const [hitt] = await database("hits")
-      .where({ 
+      .where({
         month: hit.month,
         year: hit.year,
         providers_info_id: check_providers_info2.id,
@@ -130,7 +132,7 @@ export async function RegisterHistoricalUseCase(data) {
         .insert({
           access_key: "",
           cnpj: "",
-          value: 0,
+          value: !hit.value_note ? 0 : hit.value_note,
           nf: hit.nf,
           issue: new Date(`${year}-${getMonthNumber(month)}-01`),
           provider: hit.provider,
